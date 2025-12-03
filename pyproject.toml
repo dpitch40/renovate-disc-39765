@@ -1,0 +1,7 @@
+[project]
+name = "renovate-disc-39765"
+version = "0.1.0"
+description = "Minimal reproduction"
+readme = "README.md"
+requires-python = "~=3.13.0"
+dependencies = []
