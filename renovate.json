@@ -2,6 +2,67 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    ":enablePreCommit",
+    ":enablePreCommit"
   ],
+  "ignorePaths": [
+    "sdk/**",
+    "lib/**"
+  ],
+  "prBodyNotes": [
+    "Jira issue FLYW-29977"
+  ],
+  "reviewersFromCodeOwners": true,
+  "minimumReleaseAge": "5d",
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "groupName": "all non-major, non-Python, non-FastAPI dependencies",
+      "groupSlug": "all-minor-patch",
+      "matchPackageNames": [
+        "!/^python$/", "!/^fastapi$/"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
+    },
+    {
+      "matchDatasources": [
+        "pypi"
+      ],
+      "matchPackageNames": [
+        "types-*"
+      ],
+      "overrideDepName": "{{replace 'types-' '' depName}}"
+    },
+    {
+      "matchPackageNames": [
+        "/pytest/"
+      ],
+      "groupName": "pytest",
+      "enabled": false
+    },
+    {
+      "matchPackageNames": [
+        "/ruff/"
+      ],
+      "groupName": "ruff"
+    },
+    {
+      "matchPackageNames": [
+        "/google/"
+      ],
+      "groupName": "google"
+    },
+    {
+      "matchPackageNames": [
+        "/cvat/"
+      ],
+      "groupName": "cvat",
+      "enabled": false
+    }
+  ],
+  "schedule": ["* 0-6 * * 1-5", "* 22-23 * * 0-4"]
 }
